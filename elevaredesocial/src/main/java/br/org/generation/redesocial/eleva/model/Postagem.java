@@ -25,7 +25,7 @@ public class Postagem {
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date data = new java.sql.Date(System.currentTimeMillis());
+	private Date data_Postagem = new java.sql.Date(System.currentTimeMillis());
 	
 	@NotBlank(message = "O atributo Título é obrigatório")
 	@Size(min = 2, max= 200, message = "O atributo título deve conter mínimo 5 e máximo 200 caracteres")
@@ -53,14 +53,14 @@ public class Postagem {
 
 	public void setId(Long id) {
 		this.id = id;
+	}	
+
+	public Date getData_Postagem() {
+		return data_Postagem;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
+	public void setData_Postagem(Date data_Postagem) {
+		this.data_Postagem = data_Postagem;
 	}
 
 	public String getTitulo() {
