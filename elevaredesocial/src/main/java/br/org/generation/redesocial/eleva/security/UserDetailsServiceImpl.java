@@ -11,20 +11,22 @@ import org.springframework.stereotype.Service;
 import br.org.generation.redesocial.eleva.model.Usuario;
 import br.org.generation.redesocial.eleva.repository.UsuarioRepository;
 
+
 @Service
-	public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-		@Autowired
-		private UsuarioRepository userRepository;
+	@Autowired
+	private UsuarioRepository userRepository;
 
-		@Override
-		public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
 		
-			
-			Optional<Usuario> usuario = userRepository.findByUsuario(userName);
-			
+		Optional<Usuario> usuario = userRepository.findByUsuario(userName);	
+	  
+		usuario.orElseThrow(() -> new UsernameNotFoundException(userName + " not found."));
 
-			return usuario.map(UserDetailsImpl::new).get();
-}
+		return usuario.map(UserDetailsImpl::new).get();
+	}
 }
